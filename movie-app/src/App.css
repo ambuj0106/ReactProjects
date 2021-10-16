@@ -29,6 +29,35 @@
   color: aliceblue;
 }
 
+/* movie-card */
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: center;
+}
+.movie-card {
+  width: 20vw;
+  margin: 1rem;
+  color: white;
+}
+.movie-img {
+  position: relative;
+  height: 40vh;
+  width: 20vw;
+}
+.movie-title {
+  position: absolute;
+  background-color: black;
+  top: 1rem;
+  left: 1rem;
+}
+
+.movie-button {
+  position: absolute;
+  bottom: 2rem;
+}
+
 @media screen and (max-width: 400px) {
   .banner-card {
     height: 30vh;
@@ -44,31 +73,14 @@
     top: 17vh;
     left: 5vw;
   }
-}
-
-/* movie-card */
-.movie-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1rem;
-  justify-content: center;
-}
-.movie-card {
-  width: 20vw;
-  margin: 1rem;
-  color: white;
-}
-.movie-img {
-  position: relative;
-}
-.movie-title {
-  position: absolute;
-
-  top: 1rem;
-  left: 1rem;
-}
-
-.movie-button {
-  position: absolute;
-  left: 2rem;
+  .movie-card {
+    width: 80vw;
+    margin: 0.1rem;
+  }
+  .movie-button {
+    width: 80%;
+  }
+  .movie-img {
+    width: 80vw;
+  }
 }
