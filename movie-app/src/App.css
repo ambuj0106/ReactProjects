@@ -1,0 +1,74 @@
+/* navbar */
+
+.my-navbar {
+  background: blue;
+}
+
+/* banner */
+
+.banner-img {
+  position: relative;
+  width: 100vw;
+  height: 70vh;
+}
+
+.banner-title {
+  position: absolute;
+  top: 45vh;
+  left: 5vw;
+  color: aliceblue;
+}
+
+.banner-overview {
+  position: absolute;
+  top: 52vh;
+  left: 5vw;
+  height: 4.5rem;
+  overflow: hidden;
+  margin-right: 5vw;
+  color: aliceblue;
+}
+
+@media screen and (max-width: 400px) {
+  .banner-card {
+    height: 30vh;
+  }
+  .banner-img {
+    height: 30vh;
+  }
+  .banner-title {
+    top: 10vh;
+    left: 5vw;
+  }
+  .banner-overview {
+    top: 17vh;
+    left: 5vw;
+  }
+}
+
+/* movie-card */
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: center;
+}
+.movie-card {
+  width: 20vw;
+  margin: 1rem;
+  color: white;
+}
+.movie-img {
+  position: relative;
+}
+.movie-title {
+  position: absolute;
+
+  top: 1rem;
+  left: 1rem;
+}
+
+.movie-button {
+  position: absolute;
+  left: 2rem;
+}
