@@ -84,3 +84,11 @@
     width: 80vw;
   }
 }
+
+/* Favourite */
+.Favourite-img {
+  width: 10rem;
+}
+.favourite-filter {
+  margin-left: 2rem;
+}

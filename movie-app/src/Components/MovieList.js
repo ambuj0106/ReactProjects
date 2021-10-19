@@ -8,6 +8,7 @@ export default class MovieList extends Component {
       parr: [1],
       currPage: 1,
       movie: [],
+      fav: [],
     };
   }
   async componentDidMount() {
@@ -32,17 +33,26 @@ export default class MovieList extends Component {
     });
   };
   handleNext = () => {
-    let tmpArr = [];
-    for (let i = 1; i <= this.state.parr.length + 1; i++) {
-      tmpArr.push(i);
+    if (this.state.currPage >= this.state.parr.length) {
+      let tmpArr = [];
+      for (let i = 1; i <= this.state.parr.length + 1; i++) {
+        tmpArr.push(i);
+      }
+      this.setState(
+        {
+          currPage: this.state.currPage + 1,
+          parr: [...tmpArr],
+        },
+        this.changeMovies
+      );
+    } else {
+      this.setState(
+        {
+          currPage: this.state.currPage + 1,
+        },
+        this.changeMovies
+      );
     }
-    this.setState(
-      {
-        currPage: this.state.currPage + 1,
-        parr: [...tmpArr],
-      },
-      this.changeMovies
-    );
   };
   handlePrev = () => {
     if (this.state.currPage != 1) {
@@ -63,6 +73,24 @@ export default class MovieList extends Component {
         this.changeMovies
       );
     }
+  };
+  handleFav = (movieObj) => {
+    let oldData = JSON.parse(localStorage.getItem("movies") || "[]");
+    if (this.state.fav.includes(movieObj.id)) {
+      oldData = oldData.filter((m) => m.id != movieObj.id);
+    } else {
+      oldData.push(movieObj);
+    }
+    localStorage.setItem("movies", JSON.stringify(oldData));
+    this.handleFavState();
+    console.log(oldData);
+  };
+  handleFavState = () => {
+    let oldData = JSON.parse(localStorage.getItem("movies") || "[]");
+    let temp = oldData.map((m) => m.id);
+    this.setState({
+      fav: [...temp],
+    });
   };
   render() {
     let movies = this.state.movie;
@@ -104,11 +132,22 @@ export default class MovieList extends Component {
                       justifyContent: "center",
                     }}
                   >
-                    {this.state.hover == movieObj.id && (
-                      <a href="#" className="btn btn-primary movie-button">
-                        Add to favourite
-                      </a>
-                    )}
+                    {this.state.hover == movieObj.id &&
+                      (this.state.fav.includes(movieObj.id) ? (
+                        <a
+                          className="btn btn-primary movie-button"
+                          onClick={() => this.handleFav(movieObj)}
+                        >
+                          Remove from favourite
+                        </a>
+                      ) : (
+                        <a
+                          className="btn btn-primary movie-button"
+                          onClick={() => this.handleFav(movieObj)}
+                        >
+                          Add to Favourite
+                        </a>
+                      ))}
                   </div>
                   {/* </div> */}
                 </div>
@@ -122,16 +161,27 @@ export default class MovieList extends Component {
                       Previous
                     </a>
                   </li>
-                  {this.state.parr.map((pn) => (
-                    <li className="page-item">
-                      <a
-                        className="page-link"
-                        onClick={() => this.handleNum(pn)}
-                      >
-                        {pn}
-                      </a>
-                    </li>
-                  ))}
+                  {this.state.parr.map((pn) =>
+                    pn == this.state.currPage ? (
+                      <li className="page-item active">
+                        <a
+                          className="page-link"
+                          onClick={() => this.handleNum(pn)}
+                        >
+                          {pn}
+                        </a>
+                      </li>
+                    ) : (
+                      <li className="page-item ">
+                        <a
+                          className="page-link"
+                          onClick={() => this.handleNum(pn)}
+                        >
+                          {pn}
+                        </a>
+                      </li>
+                    )
+                  )}
                   <li className="page-item">
                     <a className="page-link" onClick={this.handleNext}>
                       Next

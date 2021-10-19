@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            MovieApp
-          </a>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <a className="navbar-brand">MovieApp</a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -27,12 +28,9 @@ export default class Navbar extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="https://getbootstrap.com/docs/5.1/components/navbar/"
-                >
-                  Favourite Movies
-                </a>
+                <Link to="/favourite" style={{ textDecoration: "none" }}>
+                  <a className="nav-link">Favourite Movies</a>
+                </Link>
               </li>
             </ul>
             <form className="d-flex">
