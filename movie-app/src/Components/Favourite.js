@@ -82,6 +82,7 @@ export default class Favourite extends Component {
       10752: "War",
       37: "Western",
     };
+
     let filteredMovies = [];
     if (this.state.currgen != "All Genres") {
       filteredMovies = this.state.movies.filter(
